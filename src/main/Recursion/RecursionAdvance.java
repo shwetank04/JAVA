@@ -51,5 +51,64 @@ public class RecursionAdvance {
 		}
 
 	}
+	
+		public static void moveAllX(String str, int idx, int count, String newString) {
+		if (idx == str.length()) {
+			for (int i = 0; i < count; i++) {
+				newString += 'x';
+			}
+			System.out.println(newString);
+			return;
+		}
+		if (str.charAt(idx) == 'x') {
+			count++;
+			moveAllX(str, idx + 1, count, newString);
+		} else {
+			newString += str.charAt(idx);
+			moveAllX(str, idx + 1, count, newString);
+		}
+	}
+
+	public static boolean[] map = new boolean[26];
+
+	public static void removeDuplicates(String str, int idx, String newString) {
+		if (idx == str.length()) {
+			System.out.println(newString);
+			return;
+		}
+		char currChar = str.charAt(idx);
+		if (map[currChar - 'a']) {
+			removeDuplicates(str, idx + 1, newString);
+		} else {
+			newString += currChar;
+			map[currChar - 'a'] = true;
+			removeDuplicates(str, idx + 1, newString);
+		}
+	}
+
+	public static void subsequences(String str, int idx, String newString) {
+		if (idx == str.length()) {
+			System.out.println(newString);
+			return;
+		}
+		char currChar = str.charAt(idx);
+		subsequences(str, idx + 1, newString + currChar);
+		subsequences(str, idx + 1, newString);
+
+	}
+
+	public static String[] keypad = { ".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz" };
+
+	public static void keypadCombination(String str, int idx, String combination) {
+		if(idx==str.length()) {
+			System.out.println(combination);
+			return;
+		}
+		char currChar = str.charAt(idx);
+		String mapping = keypad[currChar - '0'];
+		for (int i = 0; i < mapping.length(); i++) {
+			keypadCombination(str, idx + 1, combination + mapping.charAt(i));
+		}
+	}
 
 }
