@@ -37,3 +37,32 @@ class GFG {
         }
         return max_len;
     }
+
+  
+  
+  //Optimized Code
+  class GfG
+{
+    int maxLen(int arr[], int n)
+    {
+        // Creates an empty hashMap
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        int sum = 0;
+        int ans = 0;
+        for(int i=0;i<n;i++) {
+            sum += arr[i];
+            if(sum ==0){
+                ans =i+1;
+            }
+            else{
+            if(map.containsKey(sum)){
+                ans = Math.max(ans,i-map.get(sum));
+            }
+            else{
+                map.put(sum,i);
+            }
+        }
+    }
+        return ans;
+    }
+}
