@@ -29,3 +29,21 @@ class Solution {
         return pair;
     }
 }
+
+//Optimized Code
+class Solution {
+    int getPairsCount(int[] arr, int n, int k) {
+        // code here
+        int pair = 0;
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        for(int i=0;i<n;i++) {
+            int b = k-arr[i];
+            if(map.containsKey(b)) {
+                pair += map.get(b);
+            }
+            map.putIfAbsent(arr[i],0);
+            map.put(arr[i],map.get(arr[i]) + 1);
+        }
+        return pair;
+    }
+}
