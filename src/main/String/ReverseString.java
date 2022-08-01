@@ -21,3 +21,18 @@ class Reverse
         return sb.toString();
     }
 }
+
+
+Another option:-
+    class Reverse
+{
+    public static String reverseWord(String str)
+    {
+        // Reverse the string str
+        String res = "";
+      for(int i=str.length()-1;i>=0;i--){
+          res += str.charAt(i);
+      }
+        return res;
+    }
+}
